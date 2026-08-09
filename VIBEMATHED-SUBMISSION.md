@@ -61,7 +61,7 @@ The release contains the manuscript PDF and a frozen source archive. If the manu
 ## Additional links
 
 - Repository: https://github.com/jimpeebles/graviton-root-cones
-- Passing verification workflow: https://github.com/jimpeebles/graviton-root-cones/actions/runs/31339397929
+- Passing verification workflow for the immutable `v0.3.0` tag: https://github.com/jimpeebles/graviton-root-cones/actions/runs/31341989065
 - Public review response: https://github.com/jimpeebles/graviton-root-cones/blob/main/review/response-to-referee.md
 
 ## Recommended curator inquiry
