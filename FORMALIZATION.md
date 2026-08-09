@@ -30,6 +30,7 @@ project-defined axiom.
 | A tree divergence fixes each edge flow uniquely | `sum_divergence_treeSide_eq_flow`, `flow_unique_of_same_divergence` | The flow on an edge is the divergence sum on its tail-side component, hence uniqueness. |
 | Positive flow iff all tree-cut sums are positive | `prescribed_cut_positive_iff_positive_flow` | The central strict-inequality equivalence for a prescribed divergence. |
 | Open root cone iff the tree-cut tests pass | `InOpenRootCone`, `inOpenRootCone_iff_treeCuts` | Root-cone membership is equivalent to the strict cut inequalities once a realizing tree flow is supplied. |
+| Retarded factor `-cutBracket/pairBracket` | `RetardedCutPass`, `retardedCutPass_iff_positive_flow_of_orientation`, `all_retardedCutPass_iff_positive_flow` | Both signs of `[uv]` give exactly positive edge flow, individually and for all tree edges, away from walls. |
 
 ## Deliberate abstraction boundary
 
@@ -40,10 +41,9 @@ construct this structure from mathlib's undirected `SimpleGraph.IsTree`. That
 bridge is mathematically routine but important for eliminating a statement-
 correspondence gap.
 
-Likewise, the formalization does not yet encode the Heaviside factors and their
-sign normalization, the sum over all weighted spanning trees, the advanced
-vertex, the resonance-chamber classification, the realizability count, the
-determinant special cases, or the five-point formula.
+Likewise, the formalization does not yet encode the sum over all weighted
+spanning trees, the advanced vertex, the resonance-chamber classification, the
+realizability count, the determinant special cases, or the five-point formula.
 
 ## Independent statement-audit checklist
 

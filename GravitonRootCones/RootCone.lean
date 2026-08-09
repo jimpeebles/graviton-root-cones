@@ -3,6 +3,7 @@ Copyright (c) 2026 James Kehoe. All rights reserved.
 Released under MIT license as described in the file LICENSE.
 -/
 import Mathlib.Data.Fintype.BigOperators
+import Mathlib.Algebra.Order.Field.Basic
 import Mathlib.Tactic.Ring
 import Mathlib.Util.AssertNoSorry
 
@@ -199,6 +200,61 @@ theorem inOpenRootCone_iff_treeCuts [LT R]
 
 end DirectedCuts
 
+section RetardedSigns
+
+variable {E R : Type*}
+variable [Field R] [LinearOrder R] [IsStrictOrderedRing R]
+
+/-- Away from a chamber wall, the retarded Heaviside factor passes precisely
+when its argument `-cutBracket / pairBracket` is strictly positive. -/
+def RetardedCutPass (pairBracket cutBracket : R) : Prop :=
+  0 < -cutBracket / pairBracket
+
+/-- If `[uv] < 0`, the retarded orientation is `u → v`; the component
+containing `u` is the tail side and its cut sum equals the positive flow. -/
+theorem retardedCutPass_of_pair_neg {pairBracket flow : R} (hpair : pairBracket < 0) :
+    RetardedCutPass pairBracket flow ↔ 0 < flow := by
+  change 0 < -flow / pairBracket ↔ 0 < flow
+  constructor
+  · intro h
+    rcases (div_pos_iff.mp h) with ⟨_, hpairPos⟩ | ⟨hflow, _⟩
+    · exact ((not_lt_of_ge (le_of_lt hpair)) hpairPos).elim
+    · simpa using hflow
+  · intro hflow
+    apply div_pos_iff.mpr
+    exact Or.inr ⟨by simpa using hflow, hpair⟩
+
+/-- If `[uv] > 0`, the retarded orientation is `v → u`; the component
+containing `u` is the head side and its cut sum is minus the positive flow. -/
+theorem retardedCutPass_of_pair_pos {pairBracket flow : R} (hpair : 0 < pairBracket) :
+    RetardedCutPass pairBracket (-flow) ↔ 0 < flow := by
+  simp [RetardedCutPass, hpair]
+
+/-- The two orientation cases in the manuscript give the same criterion:
+the retarded cut factor passes exactly when the corresponding edge flow is
+strictly positive. -/
+theorem retardedCutPass_iff_positive_flow_of_orientation
+    {pairBracket cutBracket flow : R}
+    (horient : (pairBracket < 0 ∧ cutBracket = flow) ∨
+      (0 < pairBracket ∧ cutBracket = -flow)) :
+    RetardedCutPass pairBracket cutBracket ↔ 0 < flow := by
+  rcases horient with ⟨hpair, rfl⟩ | ⟨hpair, rfl⟩
+  · exact retardedCutPass_of_pair_neg hpair
+  · exact retardedCutPass_of_pair_pos hpair
+
+/-- Pointwise orientation matching turns all retarded step-function tests into
+strict positivity of every edge flow. -/
+theorem all_retardedCutPass_iff_positive_flow
+    (pairBracket cutBracket flow : E → R)
+    (horient : ∀ e, (pairBracket e < 0 ∧ cutBracket e = flow e) ∨
+      (0 < pairBracket e ∧ cutBracket e = -flow e)) :
+    (∀ e, RetardedCutPass (pairBracket e) (cutBracket e)) ↔ ∀ e, 0 < flow e := by
+  constructor <;> intro h e
+  · exact (retardedCutPass_iff_positive_flow_of_orientation (horient e)).mp (h e)
+  · exact (retardedCutPass_iff_positive_flow_of_orientation (horient e)).mpr (h e)
+
+end RetardedSigns
+
 assert_no_sorry bracket_self
 assert_no_sorry bracket_add_right
 assert_no_sorry bracket_add_left
@@ -212,6 +268,10 @@ assert_no_sorry flow_unique_of_same_divergence
 assert_no_sorry tree_cut_positive_iff_positive_flow
 assert_no_sorry prescribed_cut_positive_iff_positive_flow
 assert_no_sorry inOpenRootCone_iff_treeCuts
+assert_no_sorry retardedCutPass_of_pair_neg
+assert_no_sorry retardedCutPass_of_pair_pos
+assert_no_sorry retardedCutPass_iff_positive_flow_of_orientation
+assert_no_sorry all_retardedCutPass_iff_positive_flow
 
 #print axioms bracket_self
 #print axioms bracket_add_right
@@ -226,5 +286,9 @@ assert_no_sorry inOpenRootCone_iff_treeCuts
 #print axioms tree_cut_positive_iff_positive_flow
 #print axioms prescribed_cut_positive_iff_positive_flow
 #print axioms inOpenRootCone_iff_treeCuts
+#print axioms retardedCutPass_of_pair_neg
+#print axioms retardedCutPass_of_pair_pos
+#print axioms retardedCutPass_iff_positive_flow_of_orientation
+#print axioms all_retardedCutPass_iff_positive_flow
 
 end GravitonRootCones

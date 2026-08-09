@@ -32,7 +32,8 @@ The conceptual core now has a Lean 4 formalization pinned to Lean and mathlib `v
 - the spinor cut identity `[q_A,Q-q_A] = sum_(i in A) [q_i,Q]` and the zero-sum property of the projected vector;
 - the directed cut/divergence identity for finite edge sets;
 - uniqueness of a flow with prescribed divergence on a directed tree cut system;
-- equivalence between strict edge-cut inequalities, strictly positive tree flows, and open-root-cone membership.
+- equivalence between strict edge-cut inequalities, strictly positive tree flows, and open-root-cone membership;
+- the two retarded-orientation sign cases showing that `-cutBracket/pairBracket > 0` is exactly positive edge flow away from chamber walls.
 
 `lake build` completes without `sorry`. Every principal declaration is guarded by mathlib's `assert_no_sorry` command and followed by `#print axioms`. The reported dependencies are limited to Lean/mathlib's standard `propext`, `Classical.choice`, and `Quot.sound`; there are no custom axioms and no `sorryAx`. CI additionally rechecks the compiled environment with Lean Action's `leanchecker`.
 

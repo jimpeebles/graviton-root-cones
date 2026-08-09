@@ -52,9 +52,9 @@ arXiv:2603.04330 says that simplification of the general solution, if possible, 
 
 ## Primary source
 
-**Source name:** GitHub release v0.2.0 — reviewed working preprint
+**Source name:** GitHub release v0.3.0 — Lean-checked working preprint
 
-**Source URL:** https://github.com/jimpeebles/graviton-root-cones/releases/tag/v0.2.0
+**Source URL:** https://github.com/jimpeebles/graviton-root-cones/releases/tag/v0.3.0
 
 The release contains the manuscript PDF and a frozen source archive. If the manuscript is later archived on Zenodo or arXiv, update the publication field to Preprint and replace or supplement this source URL.
 
