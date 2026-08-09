@@ -9,11 +9,12 @@ statement audit concrete. It is not itself such an audit.
 - Lean: `v4.32.2`, pinned in `lean-toolchain`
 - mathlib: `v4.32.2`, pinned in `lake-manifest.json`
 - Build: `lake build --wfail`
-- Independent checker in CI: `nanoda`, with `sorryAx` forbidden
+- Compiled-environment recheck in CI: Lean Action's `leanchecker`
 
-Every principal theorem is followed by `#print axioms`. The expected output may
-contain only `propext`, `Classical.choice`, and `Quot.sound`. It must not contain
-`sorryAx` or any project-defined axiom.
+Every principal theorem is guarded by mathlib's `assert_no_sorry` command and
+followed by `#print axioms`. The expected output may contain only `propext`,
+`Classical.choice`, and `Quot.sound`. It must not contain `sorryAx` or any
+project-defined axiom.
 
 ## Manuscript-to-Lean map
 

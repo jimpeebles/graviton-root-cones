@@ -34,7 +34,7 @@ The conceptual core now has a Lean 4 formalization pinned to Lean and mathlib `v
 - uniqueness of a flow with prescribed divergence on a directed tree cut system;
 - equivalence between strict edge-cut inequalities, strictly positive tree flows, and open-root-cone membership.
 
-`lake build` completes without `sorry`, and each principal declaration is followed by `#print axioms`. The reported dependencies are limited to Lean/mathlib's standard `propext`, `Classical.choice`, and `Quot.sound`; there are no custom axioms and no `sorryAx`. CI additionally runs the independent `nanoda` checker with `sorryAx` forbidden.
+`lake build` completes without `sorry`. Every principal declaration is guarded by mathlib's `assert_no_sorry` command and followed by `#print axioms`. The reported dependencies are limited to Lean/mathlib's standard `propext`, `Classical.choice`, and `Quot.sound`; there are no custom axioms and no `sorryAx`. CI additionally rechecks the compiled environment with Lean Action's `leanchecker`.
 
 This supports the scoped label **Lean-checked, statement unaudited** for the formalized core—not for every claim in the paper. The correspondence between the manuscript and Lean statement has not yet been independently audited. The construction of the cut system from mathlib's `SimpleGraph.IsTree`, the weighted tree-enumerator formula as a whole, the realizability count, chamber classifications, determinant checks, and five-point identity remain outside Lean and retain their exact-arithmetic/adversarial-review status.
 

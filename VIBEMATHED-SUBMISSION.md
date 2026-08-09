@@ -44,7 +44,7 @@ Under human direction, OpenAI Codex proposed the root-cone interpretation, devel
 
 ## Verification note
 
-The conceptual cut/flow/root-cone equivalence is formalized in Lean 4 with no `sorry` or custom axioms. GitHub CI runs `lake build`, prints the axioms of every principal declaration, and uses the independent `nanoda` checker with `sorryAx` forbidden. The informal-to-formal correspondence has not been independently audited, so the appropriate scoped label is **Lean-checked, statement unaudited**. This label applies to the formalized core only. The chamber counts, determinant identities, realizability count, and five-point formula remain exact-code checked and adversarially reproduced, but are not Lean-checked. No unaffiliated human domain expert has yet endorsed the result.
+The conceptual cut/flow/root-cone equivalence is formalized in Lean 4 with no `sorry` or custom axioms. Every principal declaration is guarded by mathlib's `assert_no_sorry` command and has its axioms printed; GitHub CI runs `lake build --wfail` and rechecks the compiled environment with `leanchecker`. The informal-to-formal correspondence has not been independently audited, so the appropriate scoped label is **Lean-checked, statement unaudited**. This label applies to the formalized core only. The chamber counts, determinant identities, realizability count, and five-point formula remain exact-code checked and adversarially reproduced, but are not Lean-checked. No unaffiliated human domain expert has yet endorsed the result.
 
 ## Prior-question anchor
 

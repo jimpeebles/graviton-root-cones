@@ -4,6 +4,7 @@ Released under MIT license as described in the file LICENSE.
 -/
 import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Tactic.Ring
+import Mathlib.Util.AssertNoSorry
 
 set_option linter.style.header false
 
@@ -197,6 +198,20 @@ theorem inOpenRootCone_iff_treeCuts [LT R]
     exact (prescribed_cut_positive_iff_positive_flow tail head x flow cuts hdiv).mp hcuts
 
 end DirectedCuts
+
+assert_no_sorry bracket_self
+assert_no_sorry bracket_add_right
+assert_no_sorry bracket_add_left
+assert_no_sorry bracket_sub_self_right
+assert_no_sorry bracket_finset_sum_left
+assert_no_sorry cut_bracket_eq_sum_projected
+assert_no_sorry sum_projected_eq_zero
+assert_no_sorry sum_divergence_eq_sum_cutContribution
+assert_no_sorry sum_divergence_treeSide_eq_flow
+assert_no_sorry flow_unique_of_same_divergence
+assert_no_sorry tree_cut_positive_iff_positive_flow
+assert_no_sorry prescribed_cut_positive_iff_positive_flow
+assert_no_sorry inOpenRootCone_iff_treeCuts
 
 #print axioms bracket_self
 #print axioms bracket_add_right
