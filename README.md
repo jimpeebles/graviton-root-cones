@@ -25,9 +25,24 @@ The mathematics passed an adversarial independent LLM review, including fresh de
 
 The claim is intentionally narrow: this is a partial resolution of the matrix-tree obstruction stated in arXiv:2603.04330, not a general closed form for unrestricted half-collinear amplitudes.
 
+## Lean formalization
+
+The conceptual core now has a Lean 4 formalization pinned to Lean and mathlib `v4.32.2`. The checked declarations prove:
+
+- the spinor cut identity `[q_A,Q-q_A] = sum_(i in A) [q_i,Q]` and the zero-sum property of the projected vector;
+- the directed cut/divergence identity for finite edge sets;
+- uniqueness of a flow with prescribed divergence on a directed tree cut system;
+- equivalence between strict edge-cut inequalities, strictly positive tree flows, and open-root-cone membership.
+
+`lake build` completes without `sorry`, and each principal declaration is followed by `#print axioms`. The reported dependencies are limited to Lean/mathlib's standard `propext`, `Classical.choice`, and `Quot.sound`; there are no custom axioms and no `sorryAx`. CI additionally runs the independent `nanoda` checker with `sorryAx` forbidden.
+
+This supports the scoped label **Lean-checked, statement unaudited** for the formalized core—not for every claim in the paper. The correspondence between the manuscript and Lean statement has not yet been independently audited. The construction of the cut system from mathlib's `SimpleGraph.IsTree`, the weighted tree-enumerator formula as a whole, the realizability count, chamber classifications, determinant checks, and five-point identity remain outside Lean and retain their exact-arithmetic/adversarial-review status.
+
 ## Repository layout
 
 - `paper/` — manuscript PDF and LaTeX source.
+- `GravitonRootCones/RootCone.lean` — kernel-checked cut, flow, and root-cone theorems.
+- `FORMALIZATION.md` — manuscript-to-Lean claim map and independent statement-audit checklist.
 - `src/amplitude_search.py` — published recursion, direct low-point and decay anchors, flow-cone checks, and failed stronger ansatz tests.
 - `src/chamber_enumeration.py` — exact chamber classification and directed-Laplacian determinants.
 - `src/five_point_identity.py` — exhaustive check of the non-decay five-point formula.
@@ -38,6 +53,12 @@ The claim is intentionally narrow: this is a partial resolution of the matrix-tr
 ## Reproduce
 
 Python 3.12.3 is pinned; the programs use only the standard library.
+
+The Lean artifact is pinned separately by `lean-toolchain` and `lake-manifest.json`:
+
+```bash
+lake build
+```
 
 ```bash
 python src/amplitude_search.py
