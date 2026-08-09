@@ -28,7 +28,7 @@ This is a draft record, not a claim that the curator has accepted the result as 
 
 **Publication:** Announced
 
-**Verification:** Unreviewed
+**Verification:** Lean-checked, statement unaudited
 
 ## Plain-language statement
 
@@ -44,7 +44,7 @@ Under human direction, OpenAI Codex proposed the root-cone interpretation, devel
 
 ## Verification note
 
-The theorem, chamber counts, determinant identities, and five-point formula were independently reproduced by an adversarial LLM using separately written exact-arithmetic programs. No unaffiliated human domain expert has yet endorsed the result, so the correct verification label is Unreviewed.
+The conceptual cut/flow/root-cone equivalence is formalized in Lean 4 with no `sorry` or custom axioms. Every principal declaration is guarded by mathlib's `assert_no_sorry` command and has its axioms printed; GitHub CI runs `lake build --wfail` and rechecks the compiled environment with `leanchecker`. The informal-to-formal correspondence has not been independently audited, so the appropriate scoped label is **Lean-checked, statement unaudited**. This label applies to the formalized core only. The chamber counts, determinant identities, realizability count, and five-point formula remain exact-code checked and adversarially reproduced, but are not Lean-checked. No unaffiliated human domain expert has yet endorsed the result.
 
 ## Prior-question anchor
 
@@ -52,9 +52,9 @@ arXiv:2603.04330 says that simplification of the general solution, if possible, 
 
 ## Primary source
 
-**Source name:** GitHub release v0.2.0 — reviewed working preprint
+**Source name:** GitHub release v0.3.0 — Lean-checked working preprint
 
-**Source URL:** https://github.com/jimpeebles/graviton-root-cones/releases/tag/v0.2.0
+**Source URL:** https://github.com/jimpeebles/graviton-root-cones/releases/tag/v0.3.0
 
 The release contains the manuscript PDF and a frozen source archive. If the manuscript is later archived on Zenodo or arXiv, update the publication field to Preprint and replace or supplement this source URL.
 
