@@ -26,7 +26,7 @@ This is a draft record, not a claim that the curator has accepted the result as 
 
 **Vendor:** OpenAI
 
-**Publication:** Preprint, once the public repository release is live
+**Publication:** Announced
 
 **Verification:** Unreviewed
 
@@ -52,7 +52,17 @@ arXiv:2603.04330 says that simplification of the general solution, if possible, 
 
 ## Primary source
 
-Use the public GitHub release or archived Zenodo DOI after publication. Do not submit a local file or private link.
+**Source name:** GitHub release v0.2.0 — reviewed working preprint
+
+**Source URL:** https://github.com/jimpeebles/graviton-root-cones/releases/tag/v0.2.0
+
+The release contains the manuscript PDF and a frozen source archive. If the manuscript is later archived on Zenodo or arXiv, update the publication field to Preprint and replace or supplement this source URL.
+
+## Additional links
+
+- Repository: https://github.com/jimpeebles/graviton-root-cones
+- Passing verification workflow: https://github.com/jimpeebles/graviton-root-cones/actions/runs/31339397929
+- Public review response: https://github.com/jimpeebles/graviton-root-cones/blob/main/review/response-to-referee.md
 
 ## Recommended curator inquiry
 
