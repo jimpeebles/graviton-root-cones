@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the accompanying manuscript."
+title: "Half-Collinear Graviton Vertices as Weighted Root-Cone Enumerators"
+type: article
+authors:
+  - family-names: Kehoe
+    given-names: James
+version: 0.2.0
+date-released: 2026-08-09
+repository-code: "https://github.com/jimpeebles/graviton-root-cones"
+url: "https://github.com/jimpeebles/graviton-root-cones"
+license: CC-BY-4.0
+keywords:
+  - graviton amplitudes
+  - root cones
+  - resonance arrangement
+  - matrix-tree theorem
+  - AI-assisted mathematics

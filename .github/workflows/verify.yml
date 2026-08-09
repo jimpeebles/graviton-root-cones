@@ -1,0 +1,26 @@
+name: Verification
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  exact-arithmetic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.3"
+      - name: Published anchors and root-cone checks
+        run: python src/amplitude_search.py
+      - name: Chamber classification and certificate reproducibility
+        run: |
+          python src/chamber_enumeration.py --json /tmp/chamber-certificates.json
+          cmp data/chamber-certificates.json /tmp/chamber-certificates.json
+      - name: Five-point chamber identity
+        run: python src/five_point_identity.py
+      - name: Independent referee implementation
+        run: |
+          python review/independent_check.py
+          PYTHONPATH=review python review/independent_table_check.py
